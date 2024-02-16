@@ -1,5 +1,6 @@
 package com.colossal.springsecurity.user;
 
+import com.colossal.springsecurity.token.Token;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,6 +30,9 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @OneToMany(mappedBy = "user")
+    private List<Token> token;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
